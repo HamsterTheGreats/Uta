@@ -40,28 +40,86 @@ L.imageOverlay('utah_map.jpg', bounds).addTo(map);
 
 map.fitBounds(bounds);
 
-const objectivesLayer = L.layerGroup();
+const infantryLayer = L.layerGroup();
+const mgLayer = L.layerGroup();
+const artilleryLayer = L.layerGroup();
 
-const bunkerLayer = L.layerGroup();
+L.circleMarker([900, 1200], {
+    radius: 6,
+    color: 'lime',
+    fillColor: 'lime',
+    fillOpacity: 1
+})
+.addTo(infantryLayer)
+.bindPopup("<b>Пехота #1</b><br>Хороший прострел дороги.");
 
-L.marker([1200, 1500]) 
-    .bindPopup("<b>Штаб</b><br>Описание штаба")
-    .addTo(objectivesLayer);
+L.circleMarker([1300, 1700], {
+    radius: 6,
+    color: 'lime',
+    fillColor: 'lime',
+    fillOpacity: 1
+})
+.addTo(infantryLayer)
+.bindPopup("<b>Пехота #2</b><br>Контроль прохода через дюны.");
 
-L.marker([1800, 3000])
-    .bindPopup("<b>Бункер</b><br>Описание бункера")
-    .addTo(bunkerLayer);
+L.circleMarker([1600, 2600], {
+    radius: 6,
+    color: 'lime',
+    fillColor: 'lime',
+    fillOpacity: 1
+})
+.addTo(infantryLayer)
+.bindPopup("<b>Пехота #3</b><br>Хороший обзор на траншею.");
 
-objectivesLayer.addTo(map);
-bunkerLayer.addTo(map);
+L.circleMarker([1000, 3000], {
+    radius: 7,
+    color: 'brown',
+    fillColor: 'brown',
+    fillOpacity: 1
+})
+.addTo(mgLayer)
+.bindPopup("<b>Пулемёт #1</b><br>Контроль открытого поля.");
+
+L.circleMarker([1800, 2200], {
+    radius: 7,
+    color: 'brown',
+    fillColor: 'brown',
+    fillOpacity: 1
+})
+.addTo(mgLayer)
+.bindPopup("<b>Пулемёт #2</b><br>Хорошая оборонительная позиция.");
+
+L.circleMarker([1400, 3400], {
+    radius: 8,
+    color: 'red',
+    fillColor: 'red',
+    fillOpacity: 1
+})
+.addTo(artilleryLayer)
+.bindPopup("<b>Артиллерия</b><br>Примерный сектор обстрела.");
+
+L.polygon([
+    [1400, 3400],
+    [900, 2600],
+    [1900, 2600]
+], {
+    color: 'red',
+    fillColor: 'red',
+    fillOpacity: 0.2
+})
+.addTo(artilleryLayer);
+
+infantryLayer.addTo(map);
+mgLayer.addTo(map);
+artilleryLayer.addTo(map);
 
 const overlayMaps = {
-        "Штаб": objectivesLayer,
-        "Бункеры": bunkerLayer
+    "Пехота": infantryLayer,
+    "Пулемёты": mgLayer,
+    "Артиллерия": artilleryLayer
 };
 
 L.control.layers(null, overlayMaps).addTo(map);
-
 </script>
 
 </body>
