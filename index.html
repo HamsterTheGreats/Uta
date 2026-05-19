@@ -40,6 +40,28 @@ L.imageOverlay('utah_map.jpg', bounds).addTo(map);
 
 map.fitBounds(bounds)
 
+const objectivesLayer = L.layerGroup();
+
+const bunkerLayer = L.layerGroup();
+
+L.marker([1200, 1500]) 
+    .bindPopup("<b>Штаб</b><br>Описание штаба")
+    .addTo(objectivesLayer);
+
+L.marker([1800, 3000])
+    .bindPopup("<b>Бункер</b><br>Описание бункера")
+    .addTo(bunkerLayer);
+
+objectivesLayer.addTo(map);
+bunkerLayer.addTo(map);
+
+const overlayMaps = {
+        "Штаб": objectivesLayer,
+        "Бункеры": bunkerLayer
+};
+
+L.control.layers(null, overlayMaps).addTo(map);
+
 </script>
 
 </body>
