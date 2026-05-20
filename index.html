@@ -20,6 +20,16 @@
         height: 100vh; 
         width:100vw
         }
+
+    #markerType {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    z-index: 1000;
+
+    padding: 5px;
+    font-size: 16px;
+}
 </style>
 
 </head>
@@ -223,6 +233,93 @@ const overlayMaps = {
 
 L.control.layers(null, overlayMaps).addTo(map);
 </script>
+
+<script>
+
+map.on('click', function(e) {
+
+    const type = document.getElementById('markerType').value;
+
+    let selectedIcon;
+    let selectedLayer;
+    let popupText;
+
+    if (type === 'infantry') {
+        selectedIcon = infantryIcon;
+        selectedLayer = infantryLayer;
+        popupText = "Пехота";
+    }
+
+    if (type === 'mg') {
+        selectedIcon = mgIcon;
+        selectedLayer = mgLayer;
+        popupText = "Пулемёт";
+    }
+
+    if (type === 'artillery') {
+        selectedIcon = artilleryIcon;
+        selectedLayer = artilleryLayer;
+        popupText = "Пт пушка";
+    }
+
+    if (type === 'engineer') {
+        selectedIcon = engineerIcon;
+        selectedLayer = engineerLayer;
+        popupText = "Инженер";
+    }
+
+    if (type === 'tank') {
+        selectedIcon = tankIcon;
+        selectedLayer = tankLayer;
+        popupText = "Танк";
+    }
+
+    if (type === 'garrison') {
+        selectedIcon = garrisonIcon;
+        selectedLayer = garrisonLayer;
+        popupText = "Гарнизон";
+    }
+
+    if (type === 'mine') {
+        selectedIcon = mineIcon;
+        selectedLayer = mineLayer;
+        popupText = "Мины";
+    }
+
+    if (type === 'supplies') {
+        selectedIcon = suppliesIcon;
+        selectedLayer = suppliesLayer;
+        popupText = "Припасы";
+    }
+
+    if (type === 'truck') {
+        selectedIcon = truckIcon;
+        selectedLayer = truckLayer;
+        popupText = "Грузовик";
+    }
+
+    L.marker(e.latlng, {
+        icon: selectedIcon
+    })
+    .addTo(selectedLayer)
+    .bindPopup("<b>" + popupText + "</b><br>Новая точка.")
+    .openPopup();
+
+});
+
+</script>
+
+<select id="markerType">
+    <option value="infantry">Пехота</option>
+    <option value="mg">Пулемёт</option>
+    <option value="artillery">Пт пушка</option>
+    <option value="engineer">Инженер</option>
+    <option value="tank">Танк</option>
+    <option value="garrison">Гарнизон</option>
+    <option value="mine">Мины</option>
+    <option value="supplies">Сброс припасов</option>
+    <option value="truck">Грузовик</option>
+</select>
 
 </body>
 
