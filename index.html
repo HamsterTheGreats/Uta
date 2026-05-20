@@ -40,60 +40,66 @@ L.imageOverlay('utah_map.jpg', bounds).addTo(map);
 
 map.fitBounds(bounds);
 
+const infantryIcon = L.icon({
+    iconUrl: 'Rifleman.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+
+const mgIcon = L.icon({
+    iconUrl: 'Machine_gun.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+
+const artilleryIcon = L.icon({
+    iconUrl: 'Anti-tank.png',
+
+    iconSize: [36, 36],
+    iconAnchor: [18, 18],
+    popupAnchor: [0, -18]
+});
+
 const infantryLayer = L.layerGroup();
 const mgLayer = L.layerGroup();
 const artilleryLayer = L.layerGroup();
 
-L.circleMarker([900, 1200], {
-    radius: 6,
-    color: 'lime',
-    fillColor: 'lime',
-    fillOpacity: 1
+L.marker([900, 1200], {
+ icon: infantryIcon
 })
 .addTo(infantryLayer)
 .bindPopup("<b>Пехота #1</b><br>Хороший прострел дороги.");
 
-L.circleMarker([1300, 1700], {
-    radius: 6,
-    color: 'lime',
-    fillColor: 'lime',
-    fillOpacity: 1
+L.marker([1300, 1700], {
+ icon: infantryIcon
 })
 .addTo(infantryLayer)
 .bindPopup("<b>Пехота #2</b><br>Контроль прохода через дюны.");
 
-L.circleMarker([1600, 2600], {
-    radius: 6,
-    color: 'lime',
-    fillColor: 'lime',
-    fillOpacity: 1
+L.marker([1600, 2600], {
+ icon: infantryIcon
 })
 .addTo(infantryLayer)
 .bindPopup("<b>Пехота #3</b><br>Хороший обзор на траншею.");
 
-L.circleMarker([1000, 3000], {
-    radius: 7,
-    color: 'brown',
-    fillColor: 'brown',
-    fillOpacity: 1
+L.marker([1000, 3000], {
+    icon: mgIcon
 })
 .addTo(mgLayer)
 .bindPopup("<b>Пулемёт #1</b><br>Контроль открытого поля.");
 
-L.circleMarker([1800, 2200], {
-    radius: 7,
-    color: 'brown',
-    fillColor: 'brown',
-    fillOpacity: 1
+L.marker([1800, 2200], {
+    icon: mgIcon
 })
 .addTo(mgLayer)
 .bindPopup("<b>Пулемёт #2</b><br>Хорошая оборонительная позиция.");
 
-L.circleMarker([1400, 3400], {
-    radius: 8,
-    color: 'red',
-    fillColor: 'red',
-    fillOpacity: 1
+L.marker([1400, 3400], {
+    icon: artilleryIcon
 })
 .addTo(artilleryLayer)
 .bindPopup("<b>Артиллерия</b><br>Примерный сектор обстрела.");
