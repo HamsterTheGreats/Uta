@@ -63,10 +63,58 @@ const artilleryIcon = L.icon({
     iconAnchor: [18, 18],
     popupAnchor: [0, -18]
 });
+const engineerIcon = L.icon({
+    iconUrl: 'Engineer.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+const garrisonIcon = L.icon({
+    iconUrl: 'Garrison.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+const tankIcon = L.icon({
+    iconUrl: 'Tank.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+const mineIcon = L.icon({
+    iconUrl: 'Mine.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+const suppliesIcon = L.icon({
+    iconUrl: 'Supply_drop.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
+const truckIcon = L.icon({
+    iconUrl: 'Truck.png',
+
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
+});
 
 const infantryLayer = L.layerGroup();
 const mgLayer = L.layerGroup();
 const artilleryLayer = L.layerGroup();
+const engineerLayer = L.layerGroup();
+const garrisonLayer = L.layerGroup();
+const tankLayer = L.layerGroup();
+const mineLayer = L.layerGroup();
+const suppliesLayer = L.layerGroup();
+const truckLayer = L.layerGroup();
 
 L.marker([900, 1200], {
  icon: infantryIcon
@@ -102,7 +150,43 @@ L.marker([1400, 3400], {
     icon: artilleryIcon
 })
 .addTo(artilleryLayer)
-.bindPopup("<b>Артиллерия</b><br>Примерный сектор обстрела.");
+.bindPopup("<b>Пт пушка</b><br>Примерный сектор обстрела.");
+
+L.marker([700, 700], {
+    icon: engineerIcon
+})
+.addTo(engineerLayer)
+.bindPopup("<b>Инженер</b><br>Тестовая точка.");
+
+L.marker([900, 900], {
+    icon: garrisonIcon
+})
+.addTo(garrisonLayer)
+.bindPopup("<b>Гарнизон</b><br>Тестовая точка.");
+
+L.marker([1100, 1100], {
+    icon: tankIcon
+})
+.addTo(tankLayer)
+.bindPopup("<b>Танк</b><br>Тестовая точка.");
+
+L.marker([1300, 1300], {
+    icon: mineIcon
+})
+.addTo(mineLayer)
+.bindPopup("<b>Мины</b><br>Тестовая точка.");
+
+L.marker([1500, 1500], {
+    icon: suppliesIcon
+})
+.addTo(suppliesLayer)
+.bindPopup("<b>Припасы</b><br>Тестовая точка.");
+
+L.marker([1700, 1700], {
+    icon: truckIcon
+})
+.addTo(truckLayer)
+.bindPopup("<b>Грузовик</b><br>Тестовая точка.");
 
 L.polygon([
     [1400, 3400],
@@ -118,11 +202,23 @@ L.polygon([
 infantryLayer.addTo(map);
 mgLayer.addTo(map);
 artilleryLayer.addTo(map);
+engineerLayer.addTo(map);
+garrisonLayer.addTo(map);
+tankLayer.addTo(map);
+mineLayer.addTo(map);
+suppliesLayer.addTo(map);
+truckLayer.addTo(map);
 
 const overlayMaps = {
     "Пехота": infantryLayer,
     "Пулемёты": mgLayer,
-    "Артиллерия": artilleryLayer
+    "Пт пушка": artilleryLayer,
+    "Инженеры": engineerLayer,
+    "Гарнизоны": garrisonLayer,
+    "Танки": tankLayer,
+    "Мины": mineLayer,
+    "Припасы": suppliesLayer,
+    "Грузовики": truckLayer
 };
 
 L.control.layers(null, overlayMaps).addTo(map);
