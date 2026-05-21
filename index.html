@@ -305,6 +305,10 @@ map.on('click', function(e) {
     .bindPopup("<b>" + popupText + "</b><br>Новая точка.")
     .openPopup();
 
+newMarker.on('contextmenu', function( ){
+    selectedLayer.removeLayer(newMarker);
+});
+
 });
 
 </script>
