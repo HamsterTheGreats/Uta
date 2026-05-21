@@ -298,7 +298,7 @@ map.on('click', function(e) {
         popupText = "Грузовик";
     }
 
-    L.marker(e.latlng, {
+   const newMarker = L.marker(e.latlng, {
         icon: selectedIcon
     })
     .addTo(selectedLayer)
