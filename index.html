@@ -298,11 +298,14 @@ map.on('click', function(e) {
         popupText = "Грузовик";
     }
 
-   const newMarker = L.marker(e.latlng, {
+ const description = prompt("Введите описание точки:");
+
+const newMarker = L.marker(e.latlng, {
         icon: selectedIcon
     })
     .addTo(selectedLayer)
-    .bindPopup("<b>" + popupText + "</b><br>Новая точка.")
+    .bindPopup( "<b>" + popupText + "</b><br>" + description
+    )
     .openPopup();
 
 newMarker.on('contextmenu', function( ){
